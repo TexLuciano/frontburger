@@ -6,7 +6,6 @@ import React, {
   SetStateAction,
   useEffect,
 } from 'react';
-import { number } from 'yup';
 import { UserType } from '../types/types';
 
 //export const UserContext = createContext({ state: '', setState: (newValue: string) => {} })
