@@ -8,20 +8,15 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
-import Button from '../../components/Button';
 import { toast } from 'react-toastify';
 import { useUser } from '../../context/UserContext';
-import Input from '../../components/Input';
-import { DataType , InputsTypes} from '../../types/types';
-
-
+import { Input, Button } from '../../components';
+import { DataType, InputsTypes } from '../../types/types';
 
 export const Register = () => {
   //const {state, setState}= useContext(UserContext)
 
   const users = useUser();
-
-
 
   const schema = yup.object().shape({
     name: yup.string().required('O nome é obrigatório'),
@@ -47,7 +42,7 @@ export const Register = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<InputsTypes> = async (data ) => {
+  const onSubmit: SubmitHandler<InputsTypes> = async (data) => {
     try {
       const { status } = await api.post(
         'users',
@@ -118,7 +113,7 @@ export const Register = () => {
         </C.Form>
 
         <C.SignInLink>
-          Já possui conta? <Link to='/login'>Sign In</Link >
+          Já possui conta? <Link to="/login">Sign In</Link>
         </C.SignInLink>
       </C.ContainerForm>
     </C.Container>

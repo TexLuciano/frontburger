@@ -13,7 +13,7 @@ import { formateCurrency } from '../../utils/FormateValue';
 
 // }
 
-const Offer = () => {
+export const Offer = () => {
   const [offers, setOffers] = useState<ProductType[]>([]);
 
   // let arrMatriz = [];
@@ -86,4 +86,4 @@ const Offer = () => {
   );
 };
 
-export default Offer;
+

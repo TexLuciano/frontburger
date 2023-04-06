@@ -3,7 +3,7 @@ import * as C from './style';
 import hero from '../../imgs/hero.png';
 import api from '../../services/api';
 import { Categorytype, ProductType } from '../../types/types';
-import { CardProducts } from '../../components/CardProducts';
+import { CardProducts } from '../../components';
 
 const Products = () => {
   const [categories, setCategories] = useState<Categorytype[]>([]);
@@ -42,7 +42,6 @@ const Products = () => {
       );
       setFilteredProducts(newFiltereds);
     }
-
   }, [activeCategory, products]);
 
   return (

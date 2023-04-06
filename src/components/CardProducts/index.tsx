@@ -2,7 +2,7 @@ import React from 'react';
 import * as C from './style';
 import { ProductType } from '../../types/types';
 import { formateCurrency } from '../../utils/FormateValue';
-import Button from '../Button';
+import {Button} from '../Button';
 
 export const CardProducts = ({ product }: { product: ProductType }) => {
   return (

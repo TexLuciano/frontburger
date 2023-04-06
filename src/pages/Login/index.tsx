@@ -8,18 +8,19 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
-import Button from '../../components/Button';
 import { toast } from 'react-toastify';
 import { useUser } from '../../context/UserContext';
-import Input from '../../components/Input';
 import { DataType, InputsTypes } from '../../types/types';
+import {Input,Button} from '../../components/';
 
 export const Login = () => {
-  const { userData, putUserData } = useUser();
+
+
+  const { putUserData } = useUser();
   const navigate = useNavigate()
-   
 
 
+  
   
   const schema = yup.object().shape({
     email: yup
@@ -41,6 +42,8 @@ export const Login = () => {
   });
 
   const onSubmit: SubmitHandler<InputsTypes> = async (data) => {
+    
+
     try {
       const { data: res }: DataType = await api.post(
         'sessions',
@@ -54,9 +57,10 @@ export const Login = () => {
       );
 
       putUserData(res);
-      setTimeout(()=>{
-        navigate('/')
-      },1000)
+
+    
+      navigate('/')
+    
 
       if (res.name) {
         toast.success(`Bem vindo ${res.name}`);

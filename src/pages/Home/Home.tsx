@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as C from './style';
 import hero from '../../imgs/hero.png';
-import Category from '../../components/Category';
-import Offer from '../../components/Offers';
+import {Offer,Category} from '../../components/';
 
 const Home = () => {
 

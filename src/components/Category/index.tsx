@@ -12,7 +12,7 @@ import 'glider-js/glider.min.css';
 
 // }
 
-const Category = () => {
+export const Category = () => {
   // let arrMatriz = [];
   // if (categories) {
   //   for (let i = 0; i < categories.length; i += 2) {
@@ -81,4 +81,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+
