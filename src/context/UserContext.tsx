@@ -12,15 +12,15 @@ import { UserType } from '../types/types';
 //export const UserContext = createContext({ state: '', setState: (newValue: string) => {} })
 
 interface UserContextType {
-  userData: {};
-  setUserData: Dispatch<SetStateAction<{}>>;
+  userData: UserType | null;
+  setUserData: Dispatch<SetStateAction<UserType | null>>;
   putUserData: (userIfo: UserType) => void;
 }
 
 export const UserContext = createContext<UserContextType>({
-  userData: {},
+  userData: null,
   setUserData: () => {},
-  putUserData: (userIfo: UserType) => {},
+  putUserData: (userIfo: UserType | null) => {} ,
 });
 
 type Props = {
@@ -28,10 +28,11 @@ type Props = {
 };
 
 export const UserProvider = ({ children }: Props) => {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState<UserType | null>(null);
 
   const putUserData = async (userIfo: UserType) => {
-    setUserData(userIfo);
+
+    userIfo && setUserData(userIfo);
 
     await localStorage.setItem(
       'chicoburguer:userData',

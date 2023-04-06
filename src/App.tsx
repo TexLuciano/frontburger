@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useRoutes } from "react-router-dom";
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { UserProvider } from './context/UserContext';
@@ -13,22 +14,19 @@ import Home from './pages/Home/Home';
 import NaoEncontrada from './pages/NaoEncontrada/NaoEncontrada';
 import Products from './pages/Products';
 import { AppProvider } from './context';
+import AuthGuard from './auth/AuthGuard';
+import { Routess } from './routes/Routes';
 
 function App() {
-  const user = localStorage.getItem('chicoburguer:userData');
 
+  
   return (
     <>
       <AppProvider>
-        <BrowserRouter>
-          <ReactRoutes>
-            <Route path="/" element={<Home />} />
-            <Route path="/produtos" element={<Products />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/registro" element={<Register />} />
-            <Route path="*" element={<NaoEncontrada />} />
-          </ReactRoutes>
-        </BrowserRouter>
+        <div>aaaa</div>       
+        
+        <Routess/>
+  
       </AppProvider>
     </>
   );

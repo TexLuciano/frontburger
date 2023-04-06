@@ -1,12 +1,11 @@
-import React from 'react'
-import { useUser } from '../context/UserContext';
+import React, { Children } from 'react'
 
-const { userData, putUserData } = useUser();
 
-const PrivateRoute = () => {
-  return (
-    <div>PrivateRoute</div>
-  )
+
+
+export const PrivateRoute = () => {
+  const user = localStorage.getItem('chicoburguer:userData');
+
+ 
 }
 
-export default PrivateRoute

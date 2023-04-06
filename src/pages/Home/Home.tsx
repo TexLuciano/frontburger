@@ -3,6 +3,8 @@ import * as C from './style';
 import hero from '../../imgs/hero.png';
 import {Offer,Category} from '../../components/';
 
+
+
 const Home = () => {
 
   return (

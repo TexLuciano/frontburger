@@ -4,16 +4,12 @@ import App from './App';
 import GlobaStyles from './styles/global';
 import { ToastContainer } from 'react-toastify';
 
-
-
-
-
-
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <>
-      <ToastContainer autoClose={2000} /> 
+    <React.StrictMode>
+      <ToastContainer autoClose={2000} />
       <GlobaStyles />
-      <App/>
+      <App />
+    </React.StrictMode>
   </>,
 );
