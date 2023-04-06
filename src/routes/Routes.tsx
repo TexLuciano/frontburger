@@ -19,6 +19,7 @@ import { useUser } from '../context/UserContext';
 export function Routess() {
   const { userData } = useUser();
 
+console.log(userData);
 
 
   return (
@@ -26,7 +27,7 @@ export function Routess() {
       <ReactRoutes>
         <Route
           path="/"
-          element={userData ? <Home /> : <Navigate to={'/login'} />}
+          element={<AuthGuard> <Home /></AuthGuard>}
         />
         <Route path="/produtos" element={<Products />} />
         <Route path="/login" element={<Login />} />
