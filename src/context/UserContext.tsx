@@ -12,15 +12,15 @@ import { UserType } from '../types/types';
 //export const UserContext = createContext({ state: '', setState: (newValue: string) => {} })
 
 interface UserContextType {
-  userData: UserType | null;
-  setUserData: Dispatch<SetStateAction<UserType | null>>;
+  userData: UserType | undefined | null;
+  setUserData: Dispatch<SetStateAction<UserType | undefined | null>>;
   putUserData: (userIfo: UserType) => void;
 }
 
 export const UserContext = createContext<UserContextType>({
-  userData: null,
+  userData: undefined,
   setUserData: () => {},
-  putUserData: (userIfo: UserType | null) => {} ,
+  putUserData: (userIfo: UserType | undefined | null) => {} ,
 });
 
 type Props = {
@@ -28,7 +28,7 @@ type Props = {
 };
 
 export const UserProvider = ({ children }: Props) => {
-  const [userData, setUserData] = useState<UserType | null>(null);
+  const [userData, setUserData] = useState<UserType | undefined | null>(undefined);
 
   const putUserData = async (userIfo: UserType) => {
 
@@ -45,16 +45,17 @@ export const UserProvider = ({ children }: Props) => {
    async function loadUserData(){
       const clientInfo :string | null = await localStorage.getItem('chicoburguer:userData')
     
-     clientInfo && setUserData(JSON.parse(clientInfo))
+      clientInfo ? setUserData(JSON.parse(clientInfo)) : setUserData(null)
       
    }
    loadUserData()
    
   },[])
+  
 
   return (
     <UserContext.Provider value={{ userData, putUserData, setUserData }}>
-      {children}
+        {userData !== undefined && children}
     </UserContext.Provider>
   );
 };
