@@ -7,20 +7,20 @@ import React, {
   useEffect,
 } from 'react';
 import { number } from 'yup';
-import { UserType } from '../types/types';
+import { ProductType } from '../types/types';
 
 //export const UserContext = createContext({ state: '', setState: (newValue: string) => {} })
 
 interface UserContextType {
-  cartProducts: {};
-  setCartProducts: Dispatch<SetStateAction<{}>>;
-  putUserData: (userIfo: UserType) => void;
+  cartProducts: ProductType[];
+  setCartProducts: Dispatch<SetStateAction<ProductType[]>>;
+  putProductInCart: (userIfo: ProductType) => void;
 }
 
 export const CartContext = createContext<UserContextType>({
-  cartProducts: {},
+  cartProducts: [],
   setCartProducts: () => {},
-  putUserData: (userIfo: UserType) => {},
+  putProductInCart: (userIfo: ProductType) => [],
 });
 
 type Props = {
@@ -28,15 +28,21 @@ type Props = {
 };
 
 export const CartProvider = ({ children }: Props) => {
-  const [cartProducts, setCartProducts] = useState({});
+  const [cartProducts, setCartProducts] = useState<ProductType[]>([]);
 
-  const putUserData = async (userIfo: UserType) => {
-    setCartProducts(userIfo);
+  const putProductInCart = async (userIfo: ProductType) => {
 
-    await localStorage.setItem(
-      'chicoburguer:userData',
-      JSON.stringify(userIfo),
-    );
+    const cartIndex = cartProducts
+
+    setCartProducts([userIfo]);
+    console.log( userIfo);
+    
+
+
+    // await localStorage.setItem(
+    //   'chicoburguer:useCart',
+    //   JSON.stringify(userIfo),
+    // );
   
   };
 
@@ -52,16 +58,16 @@ export const CartProvider = ({ children }: Props) => {
   },[])
 
   return (
-    <CartContext.Provider value={{ cartProducts, putUserData, setCartProducts }}>
+    <CartContext.Provider value={{ cartProducts, putProductInCart, setCartProducts }}>
       {children}
     </CartContext.Provider>
   );
 };
 
-export const useUser = (): UserContextType => {
+export const useCart = (): UserContextType => {
   const context = useContext<UserContextType>(CartContext);
   if (!context) {
-    throw new Error('useUser must be used within a UserProvider');
+    throw new Error('useCart must be used within a UserProvider');
   }
   return context;
 };

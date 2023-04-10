@@ -1,16 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import { UserProvider } from "./UserContext";
+import { UserProvider } from './UserContext';
+import { CartProvider } from './CartContext';
 type Props = {
   children: React.ReactNode;
 };
 
 export const AppProvider = ({ children }: Props) => {
-
-
   return (
-    <UserProvider>
-      {children}
-    </UserProvider>
+    <CartProvider>
+      <UserProvider>{children}</UserProvider>
+    </CartProvider>
   );
 };
