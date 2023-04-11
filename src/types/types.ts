@@ -1,10 +1,11 @@
 export interface DataType {
   data: {
-    admin: boolean;
+    admin?: boolean;
     email: string;
     id: string;
     name: string;
     token: string;
+    error?: string;
   };
 }
 
@@ -15,12 +16,13 @@ export type InputsTypes = {
   confirmPassword?: string;
 };
 
-export type UserType = {
-  admin: boolean;
+export interface UserType  {
+  admin?: boolean;
   email: string;
   id: string;
   name: string;
   token: string;
+  error?: string;
 };
 
 export interface Categorytype {
@@ -46,4 +48,13 @@ export interface ProductType {
   updatedAt: string;
   url: string;
   quantity: number;
+}
+
+export type ErrorType ={
+ data:{
+  error?: string
+ }
+    
+  
+ 
 }

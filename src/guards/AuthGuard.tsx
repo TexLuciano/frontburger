@@ -10,8 +10,11 @@ interface Props {
 export default function AuthGuard({ children }: Props) {
 
     const {userData} = useUser()
+  
+    
 
-    if(userData !== undefined && !userData) {
+
+    if(userData?.error || userData === null || userData === undefined) {
         return <Navigate to="/login"/>
     }
 

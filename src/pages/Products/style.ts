@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100vw;
   max-width: 100%;
+  
 `;
 
 export const Hero = styled.img`
@@ -23,6 +24,7 @@ export const Ul = styled.ul`
 `;
 export const Li = styled.li`
   list-style: none;
+
 `;
 
 export const Button = styled.button<{ active: boolean }>`

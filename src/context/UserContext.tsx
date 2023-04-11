@@ -27,7 +27,7 @@ type Props = {
 };
 
 export const UserProvider = ({ children }: Props) => {
-  const [userData, setUserData] = useState<UserType | undefined | null>(undefined);
+  const [userData, setUserData] = useState<UserType | undefined | null >(undefined);
 
   const putUserData = async (userIfo: UserType) => {
 

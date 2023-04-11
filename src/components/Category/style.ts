@@ -23,7 +23,6 @@ export const SliderContainer = styled.div`
   width: 200px;
 `;
 export const Button = styled.button`
-
   width: 200px;
   padding: 5px;
   margin: 0px;
@@ -36,8 +35,12 @@ export const Button = styled.button`
   border: 0px;
   cursor: pointer;
   transition: 0.6s;
-  a{
+  a {
+    color: black;
     text-decoration: none;
+    &:hover {
+      color: #fff;
+    }
   }
   &:hover {
     color: #fff;

@@ -6,23 +6,33 @@ import { Categorytype, ProductType } from '../../types/types';
 import { CardProducts } from '../../components';
 import { useLocation } from 'react-router-dom';
 const Products = () => {
+  let { state }: { state: { id: number } } = useLocation();
 
-  let { state }:{state:{id:number}} = useLocation();
-
-  let category = 0
-  if(state.id){
-    category = state.id
+  let category = 0;
+  if (state?.id) {
+    category = state.id;
   }
-
 
   const [categories, setCategories] = useState<Categorytype[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
   const [activeCategory, setActiveCategory] = useState(category);
+  const [loading, setLoading] = useState(false);
 
+  // useEffect(() => {
+  //   async function loadCategories() {
+  //     const { data }: { data: Categorytype[] } = await api.get('categories');
 
+  //     const newCategory = [{ id: 0, name: 'Todas' }, ...data];
+
+  //     setCategories(newCategory);
+  //   }
+
+  //   loadCategories();
+  // }, []);
 
   useEffect(() => {
+    setLoading(true);
     async function loadCategories() {
       const { data }: { data: Categorytype[] } = await api.get('categories');
 
@@ -31,17 +41,17 @@ const Products = () => {
       setCategories(newCategory);
     }
 
-    loadCategories();
-  }, []);
-
-  useEffect(() => {
     async function loadProducts() {
       const { data }: { data: ProductType[] } = await api.get('products');
 
       setProducts(data);
     }
-
     loadProducts();
+    loadCategories();
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
   }, []);
 
   useEffect(() => {
@@ -56,30 +66,36 @@ const Products = () => {
   }, [activeCategory, products]);
 
   return (
-    <C.Container>
-      <C.Hero src={hero} />
-      <C.Nav>
-        <C.Ul aria-placeholder="navegação-categorias">
-          {categories &&
-            categories.map((item) => (
-              <C.Li key={item.id}>
-                <C.Button
-                  onClick={() => setActiveCategory(item.id)}
-                  active={activeCategory === item.id}
-                >
-                  {item.name}
-                </C.Button>
-              </C.Li>
-            ))}
-        </C.Ul>
-      </C.Nav>
-      <C.ContainerProducts>
-        {filteredProducts &&
-          filteredProducts.map((item) => (
-            <CardProducts key={item.id} product={item} />
-          ))}
-      </C.ContainerProducts>
-    </C.Container>
+    <>
+      {loading ? (
+        <p>carregando</p>
+      ) : (
+        <C.Container>
+          <C.Hero src={hero} />
+          <C.Nav>
+            <C.Ul aria-placeholder="navegação-categorias">
+              {categories &&
+                categories.map((item) => (
+                  <C.Li key={item.id}>
+                    <C.Button
+                      onClick={() => setActiveCategory(item.id)}
+                      active={activeCategory === item.id}
+                    >
+                      {item.name}
+                    </C.Button>
+                  </C.Li>
+                ))}
+            </C.Ul>
+          </C.Nav>
+          <C.ContainerProducts>
+            {filteredProducts &&
+              filteredProducts.map((item) => (
+                <CardProducts key={item.id} product={item} />
+              ))}
+          </C.ContainerProducts>
+        </C.Container>
+      )}
+    </>
   );
 };
 

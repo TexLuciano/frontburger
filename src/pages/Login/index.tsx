@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { useUser } from '../../context/UserContext';
-import { DataType, InputsTypes } from '../../types/types';
+import { DataType, InputsTypes , ErrorType} from '../../types/types';
 import {Input,Button} from '../../components/';
 
 export const Login = () => {
@@ -45,7 +45,7 @@ export const Login = () => {
     
 
     try {
-      const { data: res }: DataType = await api.post(
+      const { data: res }: DataType    = await api.post(
         'sessions',
         {
           email: data.email,
@@ -55,13 +55,17 @@ export const Login = () => {
           validateStatus: () => true,
         },
       );
-
+       
+      console.log(res.error);
+        
       putUserData(res);
 
+      if(res.admin){
+        navigate('/pedidos')
+      }else if(!res.error ){
+        navigate('/')
+      }
     
-      navigate('/')
-    
-
       if (res.name) {
         toast.success(`Bem vindo ${res.name}`);
       } else {

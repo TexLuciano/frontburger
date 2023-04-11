@@ -8,13 +8,14 @@ import { useKeenSlider } from 'keen-slider/react';
 import Glider from 'react-glider';
 import 'glider-js/glider.min.css';
 import { formateCurrency } from '../../utils/FormateValue';
-// interface Categoryy{
-//   data:Categorytype[]
+import { useCart } from '../../context/CartContext';
+import { toast } from 'react-toastify';
 
-// }
 
 export const Offer = () => {
   const [offers, setOffers] = useState<ProductType[]>([]);
+  const {putProductInCart } = useCart()
+
 
   // let arrMatriz = [];
   // if (categories) {
@@ -34,7 +35,11 @@ export const Offer = () => {
     loadOffers();
   }, []);
 
-
+  const handleProduct =(product:ProductType)=>{
+    putProductInCart(product)
+    toast.success(`+ ${product.name}`)
+  }
+  
 
   return (
     <C.Container>
@@ -77,7 +82,7 @@ export const Offer = () => {
               <img src={i.url} />
               <p>{i.name}</p>
               <p>{formateCurrency(i.price)}</p>
-              <C.Button>Peça agora</C.Button>
+              <C.Button onClick={()=> handleProduct(i)}>Peça agora</C.Button>
             </C.Slider>
           </C.SliderContainer>
         ))}
