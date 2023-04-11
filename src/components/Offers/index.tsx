@@ -3,8 +3,6 @@ import * as C from './style';
 import hero from '../../imgs/hero.png';
 import api from '../../services/api';
 import { Categorytype, ProductType } from '../../types/types';
-import 'keen-slider/keen-slider.min.css';
-import { useKeenSlider } from 'keen-slider/react';
 import Glider from 'react-glider';
 import 'glider-js/glider.min.css';
 import { formateCurrency } from '../../utils/FormateValue';

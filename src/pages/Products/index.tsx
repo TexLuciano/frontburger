@@ -46,12 +46,12 @@ const Products = () => {
 
       setProducts(data);
     }
-    loadProducts();
-    loadCategories();
+    Promise.all([loadProducts(),loadCategories()])
+   
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 300);
+    
+    setLoading(false);
+
   }, []);
 
   useEffect(() => {

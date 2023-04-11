@@ -16,14 +16,14 @@ export type InputsTypes = {
   confirmPassword?: string;
 };
 
-export interface UserType  {
+export interface UserType {
   admin?: boolean;
   email: string;
   id: string;
   name: string;
   token: string;
   error?: string;
-};
+}
 
 export interface Categorytype {
   url?: string;
@@ -50,11 +50,33 @@ export interface ProductType {
   quantity: number;
 }
 
-export type ErrorType ={
- data:{
-  error?: string
- }
-    
-  
- 
+interface Product {
+  category: string;
+  id: number;
+  name: string;
+  price: number;
+  url: string;
+  quantity: number;
+  _id: string;
+}
+
+export interface OrdersType {
+    createdAt: string;
+    products: Product[];
+    status: string;
+    updatedAt: string;
+    user: {
+      id: string;
+      name: string;
+    };
+    __v: number;
+    _id: string;
+}
+
+export interface OrderFormated{
+  name: string
+  orderId:string
+  date:string
+  status:string
+  products:Product[]
 }

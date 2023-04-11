@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { useUser } from '../../context/UserContext';
-import { DataType, InputsTypes , ErrorType} from '../../types/types';
+import { DataType, InputsTypes } from '../../types/types';
 import {Input,Button} from '../../components/';
 
 export const Login = () => {
