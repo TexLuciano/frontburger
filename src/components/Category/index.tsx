@@ -7,6 +7,7 @@ import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import Glider from 'react-glider';
 import 'glider-js/glider.min.css';
+import { Link } from 'react-router-dom';
 // interface Categoryy{
 //   data:Categorytype[]
 
@@ -32,6 +33,9 @@ export const Category = () => {
 
     loadCategories();
   }, []);
+
+
+
 
   return (
     <C.Container>
@@ -72,7 +76,11 @@ export const Category = () => {
           <C.SliderContainer key={i.id}>
             <C.Slider>
               <img src={i.url} />
-              <C.Button>{i.name}</C.Button>
+              <C.Button>
+                <Link to={'/produtos'} state={{id: i.id}} >
+                  {i.name}
+                </Link>
+              </C.Button>
             </C.Slider>
           </C.SliderContainer>
         ))}
@@ -80,5 +88,3 @@ export const Category = () => {
     </C.Container>
   );
 };
-
-

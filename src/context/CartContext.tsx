@@ -14,13 +14,19 @@ import { ProductType } from '../types/types';
 interface UserContextType {
   cartProducts: ProductType[];
   setCartProducts: Dispatch<SetStateAction<ProductType[]>>;
-  putProductInCart: (userIfo: ProductType) => void;
+  putProductInCart: (product: ProductType) => void;
+  increaseProducts: (productId: number) => void;
+  decreaseProducts: (productId: number) => void;
+  deleteProducts: (productId: number) => void;
 }
 
 export const CartContext = createContext<UserContextType>({
   cartProducts: [],
   setCartProducts: () => {},
-  putProductInCart: (userIfo: ProductType) => [],
+  putProductInCart: (product: ProductType) => [],
+  increaseProducts: (productId: number) => {},
+  decreaseProducts: (productId: number) => {},
+  deleteProducts: (productId: number) => {},
 });
 
 type Props = {
@@ -30,35 +36,88 @@ type Props = {
 export const CartProvider = ({ children }: Props) => {
   const [cartProducts, setCartProducts] = useState<ProductType[]>([]);
 
-  const putProductInCart = async (userIfo: ProductType) => {
-
-    const cartIndex = cartProducts
-
-    setCartProducts([userIfo]);
-    console.log( userIfo);
-    
-
-
-    // await localStorage.setItem(
-    //   'chicoburguer:useCart',
-    //   JSON.stringify(userIfo),
-    // );
-  
+  const stake = async (products: ProductType[]) => {
+    await localStorage.setItem(
+      'chicoburguer:useCart',
+      JSON.stringify(products),
+    );
   };
 
-  useEffect(()=>{
-   async function loadUserData(){
-      const clientInfo :string | null = await localStorage.getItem('chicoburguer:userData')
-    
-     clientInfo && setCartProducts(JSON.parse(clientInfo))
-      
-   }
-   loadUserData()
-   
-  },[])
+  const putProductInCart = async (product: ProductType) => {
+    const cartIndex = cartProducts.findIndex((prod) => prod.id === product.id);
+    let newCartProducts: ProductType[] = [];
+
+    if (cartIndex >= 0) {
+      newCartProducts = cartProducts;
+      newCartProducts[cartIndex].quantity += +1;
+
+      setCartProducts(newCartProducts);
+    } else {
+      product.quantity = 1;
+      newCartProducts = [...cartProducts, product];
+      setCartProducts(newCartProducts);
+    }
+
+    stake(newCartProducts);
+  };
+
+  const increaseProducts = async (productId: number) => {
+    const newCart = cartProducts.map((product) => {
+      return product.id === productId
+        ? { ...product, quantity: product.quantity + 1 }
+        : product;
+    });
+
+    setCartProducts(newCart);
+
+    stake(newCart);
+  };
+
+  const deleteProducts = async (productId: number) => {
+    const newCart = cartProducts.filter((product) => product.id !== productId);
+
+    setCartProducts(newCart);
+    stake(newCart);
+  };
+
+  const decreaseProducts = async (productId: number) => {
+    const cartIndex = cartProducts.findIndex((pd) => pd.id === productId);
+
+    if (cartProducts[cartIndex].quantity > 1) {
+      const newCart = cartProducts.map((product) => {
+        return product.id === productId
+          ? { ...product, quantity: product.quantity - 1 }
+          : product;
+      });
+
+      setCartProducts(newCart);
+      stake(newCart);
+    } else {
+      deleteProducts(productId);
+    }
+  };
+  useEffect(() => {
+    async function loadUserData() {
+      const clientInfo: string | null = await localStorage.getItem(
+        'chicoburguer:useCart',
+      );
+
+      clientInfo && setCartProducts(JSON.parse(clientInfo));
+    }
+    loadUserData();
+  }, []);
 
   return (
-    <CartContext.Provider value={{ cartProducts, putProductInCart, setCartProducts }}>
+    <CartContext.Provider
+      value={{
+        cartProducts,
+        putProductInCart,
+        setCartProducts,
+        increaseProducts,
+        decreaseProducts,
+        deleteProducts,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

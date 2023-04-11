@@ -4,12 +4,23 @@ import hero from '../../imgs/hero.png';
 import api from '../../services/api';
 import { Categorytype, ProductType } from '../../types/types';
 import { CardProducts } from '../../components';
-
+import { useLocation } from 'react-router-dom';
 const Products = () => {
+
+  let { state }:{state:{id:number}} = useLocation();
+
+  let category = 0
+  if(state.id){
+    category = state.id
+  }
+
+
   const [categories, setCategories] = useState<Categorytype[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(category);
+
+
 
   useEffect(() => {
     async function loadCategories() {

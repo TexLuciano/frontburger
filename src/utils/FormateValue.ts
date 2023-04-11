@@ -1,5 +1,5 @@
-export const formateCurrency = (value: number) => {
-  console.log('eu');
+export const formateCurrency = (value: number ) => {
+
 
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',

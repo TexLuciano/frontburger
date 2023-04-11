@@ -17,6 +17,7 @@ export const Slider = styled.div`
     display: block;
     width: 200px;
     height: 150px;
+    object-fit: cover;
   }
   p{
     margin-top: 5px;

@@ -4,11 +4,16 @@ import { ProductType } from '../../types/types';
 import { formateCurrency } from '../../utils/FormateValue';
 import {Button} from '../Button';
 import { useCart } from '../../context/CartContext';
+import { toast } from 'react-toastify';
 
 export const CardProducts = ({ product }: { product: ProductType }) => {
 
 const { putProductInCart} = useCart()
 
+const handleProduct =(product:ProductType)=>{
+  putProductInCart(product)
+  toast.success(`+ ${product.name}`)
+}
 
   return (
     <C.Container>
@@ -16,10 +21,7 @@ const { putProductInCart} = useCart()
       <C.ContainerItems>
         <C.Name>{product.name}</C.Name>
         <C.Price>{formateCurrency(product.price)}</C.Price>
-        <button>-</button>
-        <div></div>
-        <button>+</button>
-        <Button onClick={()=>putProductInCart(product)}>Adicionar</Button>
+        <Button onClick={()=>handleProduct(product)}>Adicionar</Button>
       </C.ContainerItems>
     </C.Container>
   );

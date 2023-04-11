@@ -45,4 +45,5 @@ export interface ProductType {
   price: number;
   updatedAt: string;
   url: string;
+  quantity: number;
 }

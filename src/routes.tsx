@@ -6,6 +6,7 @@ import  { NotFound } from './pages/NotFound/NaoEncontrada';
 import AuthGuard from './guards/AuthGuard';
 import AuthLayout from './layouts/AuthLayout';
 import Products from './pages/Products';
+import Cart from './pages/Cart';
 
 const routes: RouteObject[] = [
   {
@@ -23,6 +24,10 @@ const routes: RouteObject[] = [
       {
         path: 'produtos',
         element: <Products />,
+      },
+      {
+        path: 'carrinho',
+        element: <Cart />,
       },
     ]
   },

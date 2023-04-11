@@ -14,6 +14,7 @@ export const Slider = styled.div`
     display: block;
     width: 200px;
     height: 150px;
+    object-fit: cover;
   }
 `;
 export const SliderContainer = styled.div`
@@ -22,6 +23,7 @@ export const SliderContainer = styled.div`
   width: 200px;
 `;
 export const Button = styled.button`
+
   width: 200px;
   padding: 5px;
   margin: 0px;
@@ -34,6 +36,9 @@ export const Button = styled.button`
   border: 0px;
   cursor: pointer;
   transition: 0.6s;
+  a{
+    text-decoration: none;
+  }
   &:hover {
     color: #fff;
     background: rgb(66, 21, 74);
