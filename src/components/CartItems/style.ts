@@ -60,8 +60,8 @@ button{
   transition: 0.3s;
   border-radius: 5px;
   &:hover{
-    background: #42154a;
-    color: #fff;
+    background: #07BC0C;
+   
   }
 }
 

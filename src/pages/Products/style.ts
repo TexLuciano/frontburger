@@ -3,12 +3,18 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100vw;
   max-width: 100%;
-  
+  transform: translateX(50px);
+  animation: scale 0.5s forwards;
+
+  @keyframes scale {
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
 `;
 
-export const Hero = styled.img`
-  max-width: 100%;
-`;
+
 
 export const Nav = styled.nav`
   margin-top: 25px;

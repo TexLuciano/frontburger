@@ -3,10 +3,15 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100vw;
   max-width: 100%;
-`;
+  transform: translateX(50px);
+  animation: scale 0.5s forwards;
 
-export const Hero = styled.img`
-  max-width: 100%;
+  @keyframes scale {
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
 `;
 
 export const Title = styled.h2`

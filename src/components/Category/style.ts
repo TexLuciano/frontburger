@@ -9,6 +9,8 @@ export const Slider = styled.div`
   background: #f7f7f7;
   padding: 10px 20px;
   border-radius: 15px;
+  display: grid;
+  gap: 10px;
   img {
     border-radius: 15px;
     display: block;
@@ -23,27 +25,20 @@ export const SliderContainer = styled.div`
   width: 200px;
 `;
 export const Button = styled.button`
-  width: 200px;
-  padding: 5px;
-  margin: 0px;
-  margin-top: 10px;
-  border-radius: 8px;
-  background: #9758a6;
-  text-align: center;
-  font-size: 1.5rem;
-  outline: none;
-  border: 0px;
-  cursor: pointer;
-  transition: 0.6s;
+border: 0;
   a {
+   font-size: 1.3rem;
+   border-radius: 8px;
+   padding: 5px;
+   display: block;
+   background: #9758a6;
+    align-self: center;
     color: black;
     text-decoration: none;
+    transition: 0.3s;
     &:hover {
-      color: #fff;
+      background:#07BC0C ;
     }
   }
-  &:hover {
-    color: #fff;
-    background: rgb(66, 21, 74);
-  }
+
 `;

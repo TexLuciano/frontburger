@@ -9,7 +9,8 @@ import Products from './pages/Products';
 import Cart from './pages/Cart';
 import AuthAdmin from './guards/AuthAdmin';
 import AdminLayout from './layouts/AdminLayout';
-import Admin from './pages/Admin';
+import Orders from './pages/Admin/Orders';
+import { ListProducts } from './pages/Admin/ListProducts';
 
 const routes: RouteObject[] = [
   {
@@ -44,7 +45,11 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/pedidos',
-        element: <Admin />,
+        element: <Orders />,
+      },
+      {
+        path: '/listar-produtos',
+        element: <ListProducts />,
       },
     ],
   },

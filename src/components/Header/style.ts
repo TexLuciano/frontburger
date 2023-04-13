@@ -5,24 +5,31 @@ export const Container = styled.div`
   max-width: 1300px;
   margin: 0 auto;
   color: black;
+
   .flexnav {
     gap: 30px;
     display: flex;
+
     a {
       font-size: 1.2rem;
       text-decoration: none;
       color: black;
       font-weight: bold;
     }
+
     .ative {
       color: rgba(0, 0, 0, 0.5) ;
       border-bottom: 2px solid rgba(0, 0, 0, 0.5);
     }
   }
+
   .flexnav2 {
+
     display: flex;
     gap: 5px;
+
     .borda {
+
       position: relative;
       border-right: 1px solid rgba(0, 0, 0, 0.5);
 
@@ -30,7 +37,7 @@ export const Container = styled.div`
         font-weight: bold;
         color: black;
         position: absolute;
-        background: #9758a6;
+        background: #07BC0C;
         padding: 3px;
         width: 20px;
         height: 20px;
@@ -39,6 +46,7 @@ export const Container = styled.div`
         top: 0px;
         left: 2px;
       }
+
       .ative svg {
        color: rgba(0, 0, 0, 0.5);
         border-bottom: 2px solid rgba(0, 0, 0, 0.5);
@@ -46,23 +54,24 @@ export const Container = styled.div`
     }
 
     div {
+
       display: flex;
       place-items: center;
       padding: 0px 10px;
 
       svg {
+
         cursor: pointer;
         font-size: 1.7rem;
         transition: 0.3s;
         color: black;
-        &:hover {
-          color: #9758a6;
-        }
+
       }
     }
   }
 
   .subdiv {
+
     display: flex;
     flex-direction: column;
 
@@ -75,6 +84,7 @@ export const Container = styled.div`
       outline: none;
       font-size: 1rem;
       border-bottom: 1px solid transparent;
+
       &:hover {
         border-bottom: 1px solid black;
       }
@@ -82,10 +92,11 @@ export const Container = styled.div`
   }
 `;
 export const ContainerItems = styled.nav`
+
   padding: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const Body = styled.div``;
+

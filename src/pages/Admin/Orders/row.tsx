@@ -16,13 +16,25 @@ import api from '../../../services/api';
 import Select from 'react-select';
 import { states } from './order-status';
 
-const Row = ({ row }: { row: OrderFormated }) => {
+interface Props {
+  row: OrderFormated;
+  orders: OrdersType[];
+  setOrders: React.Dispatch<React.SetStateAction<[] | OrdersType[]>>;
+}
+
+const Row = ({ row, orders, setOrders }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
   async function setNewStatus(id: string, status: string | undefined) {
     setIsLoading(true);
     await api.put(`orders/${id}`, { status });
+
+    const newOrders = orders.map((order) => {
+      return order._id === id ? { ...order, status } : order;
+    });
+
+    setOrders(newOrders);
     setIsLoading(false);
   }
 
@@ -45,7 +57,8 @@ const Row = ({ row }: { row: OrderFormated }) => {
         <TableCell>{row.date}</TableCell>
         <TableCell>
           <Select
-            options={states}
+            className="selectstyle"
+            options={states.filter(item => item.label !== 'Todos')}
             menuPortalTarget={document.body}
             placeholder="Status"
             defaultValue={states.find(

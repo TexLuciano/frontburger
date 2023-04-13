@@ -16,7 +16,7 @@ export const Header = () => {
   const location = useLocation()
 
 
-  const logout = async() => {
+ const logout = async() => {
   await localStorage.removeItem('chicoburguer:userData')
     navigate('/login');
   };

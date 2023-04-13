@@ -63,7 +63,7 @@ interface Product {
 export interface OrdersType {
     createdAt: string;
     products: Product[];
-    status: string;
+    status?: string;
     updatedAt: string;
     user: {
       id: string;
@@ -77,6 +77,6 @@ export interface OrderFormated{
   name: string
   orderId:string
   date:string
-  status:string
+  status?:string
   products:Product[]
 }

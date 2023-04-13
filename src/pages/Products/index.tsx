@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as C from './style';
-import hero from '../../imgs/hero.png';
 import api from '../../services/api';
 import { Categorytype, ProductType } from '../../types/types';
 import { CardProducts } from '../../components';
@@ -19,18 +18,18 @@ const Products = () => {
   const [activeCategory, setActiveCategory] = useState(category);
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   async function loadCategories() {
-  //     const { data }: { data: Categorytype[] } = await api.get('categories');
+  useEffect(() => {
+    if (activeCategory === 0) {
+      setFilteredProducts(products);
+    } else {
+      const newFiltereds = products.filter(
+        (item) => item.category_id === activeCategory,
+      );
+      setFilteredProducts(newFiltereds);
+    }
+  }, [activeCategory, products]);
 
-  //     const newCategory = [{ id: 0, name: 'Todas' }, ...data];
-
-  //     setCategories(newCategory);
-  //   }
-
-  //   loadCategories();
-  // }, []);
-
+  
   useEffect(() => {
     setLoading(true);
     async function loadCategories() {
@@ -49,21 +48,11 @@ const Products = () => {
     Promise.all([loadProducts(),loadCategories()])
    
 
-    
     setLoading(false);
 
   }, []);
 
-  useEffect(() => {
-    if (activeCategory === 0) {
-      setFilteredProducts(products);
-    } else {
-      const newFiltereds = products.filter(
-        (item) => item.category_id === activeCategory,
-      );
-      setFilteredProducts(newFiltereds);
-    }
-  }, [activeCategory, products]);
+
 
   return (
     <>
@@ -71,7 +60,6 @@ const Products = () => {
         <p>carregando</p>
       ) : (
         <C.Container>
-          <C.Hero src={hero} />
           <C.Nav>
             <C.Ul aria-placeholder="navegação-categorias">
               {categories &&

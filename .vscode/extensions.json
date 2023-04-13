@@ -1,5 +1,6 @@
 {
   "recommendations": [
-    "styled-components.vscode-styled-components"
+    "styled-components.vscode-styled-components",
+    "bracketpaircolordlw.bracket-pair-color-dlw"
   ]
 }

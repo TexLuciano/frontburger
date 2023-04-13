@@ -36,14 +36,13 @@ export const Button = styled.button`
   border-radius: 8px;
   background: #9758a6;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   outline: none;
   border: 0px;
   cursor: pointer;
-transition: 0.6s;
+transition: 0.3s;
   &:hover{
-    color: #fff;
-   background: rgb(66, 21, 74);
+   background:#07BC0C;
   }
 
 `;

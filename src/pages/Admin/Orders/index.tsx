@@ -18,10 +18,21 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Row from './row';
 import { formateDate } from '../../../utils/FormateDate';
+import { states } from './order-status';
+
+type States ={
+  id?:number,
+  label?:string,
+  value?:string
+}
+
 
 const Orders = () => {
   const [orders, setOrders] = useState<OrdersType[] | []>([]);
   const [rows, setRows] = useState<OrderFormated[] | []>([]);
+  const [ordersFiltered, setOrdersFiltered] = useState<OrderFormated[] | []>(rows);
+  const [activeCategory, setActiveCategory] = useState<States>({id:1});
+  const [activeStatus, setActiveStatus] = useState<number | undefined | null>(null);
 
   useEffect(() => {
     async function loadOrders() {
@@ -29,9 +40,22 @@ const Orders = () => {
 
       setOrders(data);
     }
-
     loadOrders();
   }, []);
+
+  useEffect(() => {
+    if (activeCategory.id === 1 ) {
+      setOrdersFiltered(rows);
+    } else {
+      const newFiltereds = rows.filter(
+        (item) => item.status === activeCategory.label,
+      );
+      setOrdersFiltered(newFiltereds);
+    }
+    setActiveStatus(activeCategory?.id)
+  }, [activeCategory, rows]);
+
+  
 
   function createData(order: OrdersType) {
     return {
@@ -42,16 +66,28 @@ const Orders = () => {
       products: order.products,
     };
   }
-
   useEffect(() => {
     const newRows = orders.map((ord) => createData(ord));
-    setRows(newRows);
-  }, [orders]);
 
-  console.log(rows);
+    setRows(newRows);
+
+  }, [orders]);
 
   return (
     <C.Container>
+      <C.Menu>
+        {states &&
+          states.map((item) => (
+            <C.LinkMenu
+              key={item.id}
+              onClick={() => setActiveCategory(item)}
+              active={item.id === activeStatus}
+            >
+              {item.label}
+            </C.LinkMenu>
+          ))}
+      </C.Menu>
+
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
@@ -64,8 +100,8 @@ const Orders = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row: OrderFormated) => (
-              <Row key={row.orderId} row={row} />
+            {ordersFiltered.map((row: OrderFormated) => (
+              <Row key={row.orderId} row={row}  orders={orders} setOrders={setOrders}/>
             ))}
           </TableBody>
         </Table>
