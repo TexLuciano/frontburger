@@ -100,7 +100,7 @@ const Orders = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {ordersFiltered.map((row: OrderFormated) => (
+            {ordersFiltered && ordersFiltered.map((row: OrderFormated) => (
               <Row key={row.orderId} row={row}  orders={orders} setOrders={setOrders}/>
             ))}
           </TableBody>

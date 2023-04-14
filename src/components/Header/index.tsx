@@ -11,9 +11,8 @@ export const Header = () => {
   const { cartProducts } = useCart();
 
   const navigate = useNavigate();
-
-
   const location = useLocation()
+
 
 
  const logout = async() => {
