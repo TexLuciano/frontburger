@@ -21,7 +21,7 @@ export const SideMenu = () => {
         {list.map((item) => (
           <C.ContainerItem
             key={item.id}
-            isOn={location.pathname === item.link}
+            isOn={location.pathname ===`/admin/${item.link}`}
           >
             <item.icon />
             <Link to={item.link} className="link-admin">

@@ -11,6 +11,7 @@ import AuthAdmin from './guards/AuthAdmin';
 import AdminLayout from './layouts/AdminLayout';
 import Orders from './pages/Admin/Orders';
 import { ListProducts } from './pages/Admin/ListProducts';
+import { NewProduct } from './pages/Admin/NewProduct';
 
 const routes: RouteObject[] = [
   {
@@ -36,7 +37,7 @@ const routes: RouteObject[] = [
     ],
   },
   {
-    path: '/',
+    path: '/admin',
     element: (
       <AuthAdmin>
         <AdminLayout />
@@ -44,12 +45,16 @@ const routes: RouteObject[] = [
     ),
     children: [
       {
-        path: '/pedidos',
+        path: 'pedidos',
         element: <Orders />,
       },
       {
-        path: '/listar-produtos',
+        path: 'listar-produtos',
         element: <ListProducts />,
+      },
+      {
+        path: 'cadastrar-produtos',
+        element: <NewProduct />,
       },
     ],
   },
