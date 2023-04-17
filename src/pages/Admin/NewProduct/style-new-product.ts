@@ -5,6 +5,7 @@ export const Container = styled.div`
   overflow: auto;
   display: grid;
   place-content: center;
+  background: #565656;
 `;
 
 export const ContainerItems = styled.form`
@@ -14,10 +15,14 @@ export const ContainerItems = styled.form`
   place-content: center;
   background: #3c3c3c;
   padding: 20px;
+  border-radius: 15px;
 `;
 
 export const Label = styled.label`
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
 `;
 
 export const LabelUpload = styled.label`
@@ -33,6 +38,7 @@ export const LabelUpload = styled.label`
   color: #fff;
   
   input{
+    color: black;
     opacity: 0;
     width: 1px;
     height: 1px;
@@ -41,8 +47,7 @@ export const LabelUpload = styled.label`
 
 
 export const Input = styled.input`
-  color: #fff;
-  margin-bottom: 15px;
+  color: black;
   font-size: 1.2rem;
   border-radius: 5px;
   outline: none;
@@ -51,7 +56,9 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
+margin-top: 25px;
   width: 200px;
+  font-size: 1.3rem;
   align-self: center;
   background: #9758a6;
   border: 0;

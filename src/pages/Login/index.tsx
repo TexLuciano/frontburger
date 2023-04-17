@@ -61,7 +61,7 @@ export const Login = () => {
       putUserData(res);
 
       if(res.admin){
-        navigate('/pedidos')
+        navigate('/admin/pedidos')
       }else if(!res.error ){
         navigate('/')
       }
@@ -103,7 +103,7 @@ export const Login = () => {
             />
             <p>{errors.password?.message}</p>
           </C.Icon>
-          <Button type={'submit'}>Sign In</Button>
+          <Button type='submit'>Sign In</Button>
         </C.Form>
         <C.SignInLink>
           Não possui conta? <Link to='/registro'>Sign Up</Link >

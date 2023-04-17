@@ -16,6 +16,13 @@ export type InputsTypes = {
   confirmPassword?: string;
 };
 
+export type InputsTypesProduct = {
+  name: string;
+  price: string;
+  file: string;
+  category: string
+};
+
 export interface UserType {
   admin?: boolean;
   email: string;
