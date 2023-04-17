@@ -33,7 +33,7 @@ interface PopupProps {
 
 export default function ModalEdit({ product, setProducts }: PopupProps) {
 
-console.log(product);
+
 
 
   const [open, setOpen] = React.useState(false);

@@ -48,7 +48,7 @@ export const NewProduct = () => {
   });
 
 
-  console.log(change);
+ 
   
   
   const onSubmit: SubmitHandler<InputsTypesProduct> = async (data) => {

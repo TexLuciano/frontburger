@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import * as C from '../../NewProduct/style-new-product';
 import api from '../../../../services/api';
 import Select from 'react-select';
@@ -34,7 +34,6 @@ export const EditProduct = ({ product }: { product: ProductType }) => {
   const {
     register,
     handleSubmit,
-    resetField,
     formState: { errors },
   } = useForm<InputsTypesProduct>({
     resolver: yupResolver(schema),
@@ -70,7 +69,6 @@ export const EditProduct = ({ product }: { product: ProductType }) => {
           {...register('name')}
           defaultValue={product.name}
         />
-        <p>{errors.name?.message}</p>
       </C.Label>
       <C.Label>
         Preço
@@ -79,7 +77,6 @@ export const EditProduct = ({ product }: { product: ProductType }) => {
           {...register('price')}
           defaultValue={product.price}
         />
-        <p>{errors.price?.message}</p>
       </C.Label>
       <C.LabelUpload>
         {fileName ? (
@@ -98,18 +95,17 @@ export const EditProduct = ({ product }: { product: ProductType }) => {
             setFileName(event?.target?.files);
           }}
         />
-        <p>{errors.file?.message}</p>
       </C.LabelUpload>
 
       <Select
         options={categories}
         getOptionLabel={(cat) => cat.name}
         getOptionValue={(cat) => String(cat.id)}
-        value={product.category}
+        defaultValue={change}
         placeholder="Categorias"
-        onChange={(e) => setChange(e)}
+        onChange={(e) => setChange(e)
+        }
       />
-      {change?.id ? null : change}
       <C.Button type="submit">Editar produto</C.Button>
     </C.ContainerItems>
   );

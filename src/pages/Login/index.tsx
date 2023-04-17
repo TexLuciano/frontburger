@@ -56,7 +56,7 @@ export const Login = () => {
         },
       );
        
-      console.log(res.error);
+   
         
       putUserData(res);
 
