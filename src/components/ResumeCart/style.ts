@@ -9,6 +9,11 @@ export const Container = styled.div`
   padding: 15px;
   display: grid;
   place-items: center;
+
+  @media (max-width: 550px) {
+      width: 350px;
+      height: max-content;
+    }
 `;
 export const ContainerItems = styled.ul`
   display: flex;
@@ -30,6 +35,7 @@ export const Body = styled.div`
   p {
     font-weight: bold;
     font-size: 1.5rem;
+    margin-bottom: 10px;
   }
 `;
 export const Price = styled.p`

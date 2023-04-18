@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as C from './style';
 import hero from '../../imgs/hero.png';
 import api from '../../services/api';
-import { Categorytype } from '../../types/types';
+import { Categorytype,SlipeProps } from '../../types/types';
 import Glider from 'react-glider';
 import 'glider-js/glider.min.css';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 // }
 
-export const Category = () => {
+export const Category = ({ screen }: { screen: number }) => {
   // let arrMatriz = [];
   // if (categories) {
   //   for (let i = 0; i < categories.length; i += 2) {
@@ -21,6 +21,13 @@ export const Category = () => {
   // }
 
   const [categories, setCategories] = useState<Categorytype[]>([]);
+  const [propsSlider, setPropsSlider] = useState<SlipeProps>({
+    hasArrows: true,
+    hasDots: true,
+  });
+
+ 
+
 
   useEffect(() => {
     async function loadCategories() {
@@ -32,15 +39,21 @@ export const Category = () => {
     loadCategories();
   }, []);
 
-
-
+  useEffect(() => {
+    if (screen < 550) {
+      setPropsSlider({
+        hasArrows: false,
+        hasDots: false,
+      });
+    }
+  }, [screen]);
 
   return (
     <C.Container>
       <Glider
         draggable
-        hasArrows
-        hasDots
+        hasArrows={propsSlider.hasArrows}
+        hasDots={propsSlider.hasDots}
         slidesToShow={1}
         slidesToScroll={1}
         responsive={[
@@ -75,7 +88,7 @@ export const Category = () => {
             <C.Slider>
               <img src={i.url} />
               <C.Button>
-                <Link to={'/produtos'} state={{id: i.id}} >
+                <Link to={'/produtos'} state={{ id: i.id }}>
                   {i.name}
                 </Link>
               </C.Button>

@@ -38,7 +38,7 @@ export const CartItems = () => {
               <button onClick={() => decreaseProducts(item.id)}>-</button>
               <p>{item.quantity}</p>
               <button onClick={() => increaseProducts(item.id)}>+</button>
-              <button onClick={() => deleteProducts(item.id)}><BsFillTrashFill/></button>
+              <C.ButtonTrash  onClick={() => deleteProducts(item.id)}><BsFillTrashFill/></C.ButtonTrash>
             </C.Quantity>
 
             <C.Price>{formateCurrency(item.price * item.quantity)}</C.Price>

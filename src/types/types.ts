@@ -21,6 +21,7 @@ export type InputsTypesProduct = {
   price: string;
   file: string;
   category: string
+  offer:boolean
 };
 
 export interface UserType {
@@ -34,7 +35,7 @@ export interface UserType {
 
 export interface Categorytype {
   url?: string;
-  id: number;
+  id: number ;
   name: string;
   path?: string;
   createdAt?: string;
@@ -86,4 +87,9 @@ export interface OrderFormated{
   date:string
   status?:string
   products:Product[]
+}
+
+export  type SlipeProps ={
+  hasArrows: boolean,
+  hasDots: boolean,
 }

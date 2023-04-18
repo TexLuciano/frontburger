@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 export const NewProduct = () => {
   const [fileName, setFileName] = useState<FileList | null>(null);
   const [categories, setCategories] = useState<Categorytype[] | []>([]);
-  const [change, setChange] = useState<any>('');
+  const [change, setChange] = useState<Categorytype | null | undefined>(null);
 
   useEffect(() => {
     async function loadCategories() {
@@ -29,13 +29,13 @@ export const NewProduct = () => {
     price: yup.string().required('O preço é obrigatória'),
     file: yup
       .mixed()
-      .test('required', 'Carregue um arquivo', (value:any) => {
+      .test('required', 'Carregue um arquivo', (value: any) => {
         return value?.length > 0;
       })
-      .test('fileSize', 'Carregue arquivos de até 2mb', (value:any) => {
+      .test('fileSize', 'Carregue arquivos de até 2mb', (value: any) => {
         return value[0]?.size <= 2000000;
       }),
-   
+
   });
 
   const {
@@ -47,42 +47,33 @@ export const NewProduct = () => {
     resolver: yupResolver(schema),
   });
 
-
- 
-  
-  
   const onSubmit: SubmitHandler<InputsTypesProduct> = async (data) => {
     const productDataFormData = new FormData();
 
-    if(change){
-      const newData = {...data, category: change.id}
+    if (change) {
+      const newData = { ...data, category: change.id };
       productDataFormData.append('name', newData.name);
       productDataFormData.append('price', newData.price);
-      productDataFormData.append('category_id', newData.category);
+      productDataFormData.append('category_id', newData.category.toString());
       productDataFormData.append('file', newData.file[0]);
+      productDataFormData.append('offer', String(newData.offer));
 
-      await toast.promise(api.post('products', productDataFormData ),{
-        pending:'Criando novo produto...',
-        success:'Produto criado com sucesso',
-        error:'falha ao criar produto'
+      await toast.promise(api.post('products', productDataFormData), {
+        pending: 'Criando novo produto...',
+        success: 'Produto criado com sucesso',
+        error: 'falha ao criar produto',
+      });
 
-      })
-
-
-
-      resetField('name')
-      resetField('price')
-      resetField('file')
-      setChange('')
-      setFileName(null)
-
-
-    }else{
-      setChange('Selecione uma Categoria')
+      resetField('name');
+      resetField('price');
+      resetField('file');
+      resetField('offer');
+      setChange(null);
+      setFileName(null);
+    } else {
+      setChange(undefined);
     }
-   
   };
-  
 
   return (
     <C.Container>
@@ -124,8 +115,17 @@ export const NewProduct = () => {
           placeholder="Categorias"
           onChange={(e) => setChange(e)}
         />
-      {change?.id ? null : change}
-        <C.Button type="submit" >Adicionar produto</C.Button>
+        {change === undefined ? 'Selecione uma categoria' : null}
+
+        <C.ContainerIput>
+          <input
+            type="checkbox"
+           
+            {...register('offer')}
+          />
+          <label>Produto em oferta?</label>
+        </C.ContainerIput>
+        <C.Button type="submit">Adicionar produto</C.Button>
       </C.ContainerItems>
     </C.Container>
   );

@@ -22,8 +22,12 @@ export const Nav = styled.nav`
   place-content: center;
 
   padding: 0 20px;
+  @media (max-width: 600px) {
+    padding:0px;
+  }
 `;
 export const Ul = styled.ul`
+  place-content: center;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -53,10 +57,12 @@ export const ContainerProducts = styled.div`
   gap: 25px 0;
 
   @media (max-width: 1270px) {
+
     grid-template-columns: repeat(2, 1fr);
   }
 
   @media (max-width: 870px) {
+    padding: 0px;
     grid-template-columns: repeat(1, 1fr);
   }
 `;

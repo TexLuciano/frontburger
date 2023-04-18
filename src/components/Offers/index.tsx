@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as C from './style';
 import hero from '../../imgs/hero.png';
 import api from '../../services/api';
-import { Categorytype, ProductType } from '../../types/types';
+import { ProductType,SlipeProps } from '../../types/types';
 import Glider from 'react-glider';
 import 'glider-js/glider.min.css';
 import { formateCurrency } from '../../utils/FormateValue';
@@ -10,7 +10,7 @@ import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
 
 
-export const Offer = () => {
+export const Offer = ({screen}:{screen:number}) => {
   const [offers, setOffers] = useState<ProductType[]>([]);
   const {putProductInCart } = useCart()
 
@@ -37,14 +37,28 @@ export const Offer = () => {
     putProductInCart(product)
     toast.success(`+ ${product.name}`)
   }
-  
+
+  const [propsSlider, setPropsSlider] = useState<SlipeProps>({
+    hasArrows: true,
+    hasDots: true,
+  });
+
+  useEffect(() => {
+    if (screen < 550) {
+      setPropsSlider({
+        hasArrows: false,
+        hasDots: false,
+      });
+    }
+
+  }, [screen]);
 
   return (
     <C.Container>
       <Glider
         draggable
-        hasArrows
-        hasDots
+        hasArrows={propsSlider.hasArrows}
+        hasDots={propsSlider.hasDots}
         slidesToShow={1}
         slidesToScroll={1}
         responsive={[

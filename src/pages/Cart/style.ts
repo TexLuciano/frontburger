@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+
   width: 100vw;
   max-width: 100%;
   transform: translateX(50px);
@@ -21,6 +22,7 @@ margin-bottom: 200px;
 place-content: center;
 display: flex;
 gap: 30px;
+flex-wrap: wrap;
 
 `;
 

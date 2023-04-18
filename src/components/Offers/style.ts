@@ -6,6 +6,10 @@ export const Container = styled.div`
 
   margin: 50px 100px;
   max-width: 100%;
+
+  @media (max-width:600px) {
+    margin: 30px 30px;
+  }
 `;
 
 export const Slider = styled.div`

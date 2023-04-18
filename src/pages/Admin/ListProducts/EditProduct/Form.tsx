@@ -1,5 +1,6 @@
 import {  useEffect, useState } from 'react';
 import * as C from '../../NewProduct/style-new-product';
+import * as L from './style';
 import api from '../../../../services/api';
 import Select from 'react-select';
 import * as yup from 'yup';
@@ -10,10 +11,11 @@ import { Categorytype, InputsTypesProduct } from '../../../../types/types';
 import { toast } from 'react-toastify';
 import { ProductType } from '../../../../types/types';
 
-export const EditProduct = ({ product }: { product: ProductType }) => {
+
+export const EditProduct = ({ product,loadProducts }: { product: ProductType, loadProducts:()=> void }) => {
   const [fileName, setFileName] = useState<FileList | null>(null);
   const [categories, setCategories] = useState<Categorytype[] | []>([]);
-  const [change, setChange] = useState<any>(product.category);
+  const [change, setChange] = useState<Categorytype | null>(product.category);
 
   useEffect(() => {
     async function loadCategories() {
@@ -42,22 +44,24 @@ export const EditProduct = ({ product }: { product: ProductType }) => {
   const onSubmit: SubmitHandler<InputsTypesProduct> = async (data) => {
     const productDataFormData = new FormData();
 
-
+      if(change){
       const newData = { ...data, category: change.id };
       productDataFormData.append('name', newData.name);
       productDataFormData.append('price', newData.price);
-      productDataFormData.append('category_id', newData.category);
+      productDataFormData.append('category_id', newData.category.toString());
       productDataFormData.append('file', newData.file[0]);
-
+      productDataFormData.append('offer', String(newData.offer));
       await toast.promise(
         api.put(`products/${product.id}`, productDataFormData),
         {
-          pending: 'Criando novo produto...',
-          success: 'Produto criado com sucesso',
-          error: 'falha ao criar produto',
+          pending: 'Atualizando produto...',
+          success: 'Produto atualizado com sucesso',
+          error: 'falha ao atualizar produto',
         },
       );
-   
+
+      loadProducts()
+    }
   };
 
   return (
@@ -106,6 +110,12 @@ export const EditProduct = ({ product }: { product: ProductType }) => {
         onChange={(e) => setChange(e)
         }
       />
+      <C.ContainerIput>
+       
+      <input type="checkbox" defaultChecked={product.offer} {...register('offer')}/>
+      <label>Produto em oferta?</label>
+      </C.ContainerIput>
+      
       <C.Button type="submit">Editar produto</C.Button>
     </C.ContainerItems>
   );

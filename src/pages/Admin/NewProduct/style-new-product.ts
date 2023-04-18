@@ -71,3 +71,13 @@ margin-top: 25px;
     background: #07bc0c;
   }
 `;
+
+export const ContainerIput = styled.div`
+margin-top: 10px;
+  label {
+    color: #fff;
+  }
+  input{
+    font-size: 1.3rem;
+  }
+`;

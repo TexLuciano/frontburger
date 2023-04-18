@@ -67,7 +67,7 @@ export default function ModalEdit({ product, setProducts }: PopupProps) {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              <EditProduct product={product}/>
+              <EditProduct product={product} loadProducts={loadProducts}/>
             </Typography>
           </Box>
         </Fade>

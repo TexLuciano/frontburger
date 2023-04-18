@@ -6,12 +6,24 @@ import {Offer,Category} from '../../components/';
 
 const Home = () => {
 
+  const [screen, setScreen] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreen(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <C.Container>
       <C.Title>categorias</C.Title>
-      <Category  />
+      <Category screen={screen} />
       <C.Title>ofertas</C.Title>
-      <Offer />
+      <Offer screen={screen}/>
     </C.Container>
   );
 };

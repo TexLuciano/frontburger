@@ -9,6 +9,14 @@ export const Container = styled.div`
   gap: 10px;
   background: #e6e6e6;
   box-shadow: 20px 20px 60px #c4c4c4, -20px -20px 60px #ffffff;
+
+  @media (max-width:480px) {
+    width: 300px;
+
+   
+  }
+
+
 `;
 export const ContainerItems = styled.div`
   display: flex;
@@ -21,6 +29,11 @@ export const Image = styled.img`
   height: 150px;
   object-fit: cover;
   border-radius: 15px;
+
+  @media (max-width:480px) {
+    width: 100px;
+    height: 75px;
+  }
 `;
 export const Name = styled.p`
   font-weight: bold;
