@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import * as C from './style-new-product';
 import api from '../../../services/api';
 import Select from 'react-select';
@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { IoMdCloudUpload } from 'react-icons/io';
 import { Categorytype, InputsTypesProduct } from '../../../types/types';
 import { toast } from 'react-toastify';
+
 
 export const NewProduct = () => {
   const [fileName, setFileName] = useState<FileList | null>(null);
@@ -26,15 +27,13 @@ export const NewProduct = () => {
 
   const schema = yup.object().shape({
     name: yup.string().required('O nome é obrigatório'),
-    price: yup.string().required('O preço é obrigatória'),
+    price: yup.string().required('O preço é obrigatória').matches(/^[^,]*$/, 'O preço deve ser um número válido'),
     file: yup
       .mixed()
       .test('required', 'Carregue um arquivo', (value: any) => {
         return value?.length > 0;
       })
-      .test('fileSize', 'Carregue arquivos de até 2mb', (value: any) => {
-        return value[0]?.size <= 2000000;
-      }),
+    
 
   });
 
@@ -47,7 +46,12 @@ export const NewProduct = () => {
     resolver: yupResolver(schema),
   });
 
+
+
+
   const onSubmit: SubmitHandler<InputsTypesProduct> = async (data) => {
+
+    
     const productDataFormData = new FormData();
 
     if (change) {
@@ -64,12 +68,13 @@ export const NewProduct = () => {
         error: 'falha ao criar produto',
       });
 
-      resetField('name');
-      resetField('price');
-      resetField('file');
-      resetField('offer');
-      setChange(null);
-      setFileName(null);
+
+   
+        resetField('name');
+        resetField('price');
+        resetField('file');
+        setFileName(null);
+    
     } else {
       setChange(undefined);
     }
@@ -89,7 +94,7 @@ export const NewProduct = () => {
           <p>{errors.price?.message}</p>
         </C.Label>
         <C.LabelUpload>
-          {fileName ? (
+          { fileName && fileName?.length > 0 ? (
             fileName[0]?.name
           ) : (
             <>
@@ -120,7 +125,7 @@ export const NewProduct = () => {
         <C.ContainerIput>
           <input
             type="checkbox"
-           
+            defaultChecked={false}
             {...register('offer')}
           />
           <label>Produto em oferta?</label>

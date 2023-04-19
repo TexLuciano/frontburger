@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import * as C from './style';
 import { Link } from 'react-router-dom';
 import { AiFillMail, AiOutlineUserAdd } from 'react-icons/ai';
@@ -11,7 +10,7 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { useUser } from '../../context/UserContext';
 import { Input, Button } from '../../components';
-import { DataType, InputsTypes } from '../../types/types';
+import {  InputsTypes } from '../../types/types';
 
 export const Register = () => {
   //const {state, setState}= useContext(UserContext)

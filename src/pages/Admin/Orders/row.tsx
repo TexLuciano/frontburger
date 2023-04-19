@@ -27,11 +27,15 @@ const Row = ({ row, orders, setOrders }: Props) => {
   const [isLoading, setIsLoading] = React.useState(false);
 
   async function setNewStatus(id: string, status: string | undefined) {
+    console.log(id);
     setIsLoading(true);
     await api.put(`orders/${id}`, { status });
 
     const newOrders = orders.map((order) => {
       return order._id === id ? { ...order, status } : order;
+
+      
+      
     });
 
     setOrders(newOrders);

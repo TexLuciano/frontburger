@@ -6,6 +6,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   height: 100vh;
+  
+ 
+ 
 `;
 
 const AdminLayout = (): JSX.Element => {

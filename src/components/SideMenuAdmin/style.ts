@@ -13,23 +13,20 @@ export const Container = styled.div`
   }
 `;
 
-
-export const ContainerItem = styled.div<{isOn:boolean}>`
+export const ContainerItem = styled.div<{ isOn: boolean }>`
   height: 50px;
   display: flex;
   align-items: center;
-  
+
   border-radius: 3px;
   margin: 8px;
   gap: 10px;
   padding: 0 10px;
-  background: ${({isOn})=> isOn && '#565656'};
+  background: ${({ isOn }) => isOn && '#565656'};
 
   svg {
     color: #fff;
   }
-
-
 
   .link-admin {
     text-decoration: none;
@@ -38,6 +35,7 @@ export const ContainerItem = styled.div<{isOn:boolean}>`
   }
 `;
 export const ContainerLogout = styled.div`
+ 
   align-self: end;
   height: 50px;
   display: flex;
@@ -55,7 +53,6 @@ export const ContainerLogout = styled.div`
     font-weight: bold;
     color: #fff;
   }
-
 `;
 
 export const ContainerMenu = styled.div``;

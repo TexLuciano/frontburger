@@ -12,6 +12,7 @@ import AdminLayout from './layouts/AdminLayout';
 import Orders from './pages/Admin/Orders';
 import { ListProducts } from './pages/Admin/ListProducts';
 import { NewProduct } from './pages/Admin/NewProduct';
+import { Categories } from './pages/Admin/Categories';
 
 const routes: RouteObject[] = [
   {
@@ -55,6 +56,10 @@ const routes: RouteObject[] = [
       {
         path: 'cadastrar-produtos',
         element: <NewProduct />,
+      },
+      {
+        path: 'categorias',
+        element: <Categories />,
       },
     ],
   },

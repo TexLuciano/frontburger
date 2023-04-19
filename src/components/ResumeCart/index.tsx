@@ -14,7 +14,7 @@ export const ResumeCart = () => {
 
   useEffect(() => {
     const sumAllItens = cartProducts.reduce((acc, current) => {
-      return current.price * current.quantity + acc;
+      return Number(current.price) * current.quantity + acc;
     }, 0);
 
  

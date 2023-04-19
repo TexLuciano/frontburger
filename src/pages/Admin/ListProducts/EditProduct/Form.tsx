@@ -1,6 +1,5 @@
 import {  useEffect, useState } from 'react';
 import * as C from '../../NewProduct/style-new-product';
-import * as L from './style';
 import api from '../../../../services/api';
 import Select from 'react-select';
 import * as yup from 'yup';

@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import * as C from './style';
 import { Link, useNavigate} from 'react-router-dom';
 import { AiFillMail } from 'react-icons/ai';

@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 100vw;
   padding: 5px 20px;
   background: #f7f7f7;
+  overflow: auto;
   .selectstyle {
     width: 250px;
   }

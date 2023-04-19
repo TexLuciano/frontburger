@@ -12,7 +12,6 @@ import { ProductType } from '../../../types/types';
 import { GiConfirmed } from 'react-icons/gi';
 import { AiOutlineStop } from 'react-icons/ai';
 import { formateCurrency } from '../../../utils/FormateValue';
-import { RiEdit2Fill } from 'react-icons/ri';
 
 import TransitionsModal from './Popup/Popup';
 import ModalEdit from './EditProduct/EditProductModal';
@@ -28,10 +27,6 @@ export const ListProducts = () => {
     }
     loadProducts();
   }, []);
-
-
-
-
 
   function isOfer(value: boolean) {
     if (value) return <GiConfirmed style={{ color: 'green' }} />;
@@ -63,24 +58,20 @@ export const ListProducts = () => {
                     {product.name}
                   </TableCell>
                   <TableCell align="center">
-                    {formateCurrency(product.price)}
+                    {formateCurrency(Number(product.price))}
                   </TableCell>
                   <TableCell align="center">{isOfer(product.offer)}</TableCell>
                   <TableCell align="center">
                     <C.ProductImg src={product.url} alt={product.name} />
                   </TableCell>
                   <TableCell align="center">
-                   
-                      <ModalEdit product={product} setProducts={setProducts}/>
-                 
+                    <ModalEdit product={product} setProducts={setProducts} />
                   </TableCell>
-                  <TableCell align="center" >
-              
-                      <TransitionsModal
-                        id={product.id}
-                        setProducts={setProducts}
-                      />
-                   
+                  <TableCell align="center">
+                    <TransitionsModal
+                      id={product.id}
+                      setProducts={setProducts}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import * as C from './style';
 import { list } from './menu-list';
 import { Link , useLocation} from 'react-router-dom';
@@ -15,7 +15,7 @@ export const SideMenu = () => {
 
 
   return (
-    <C.Container>
+    <C.Container >
       <C.ContainerMenu>
         <hr></hr>
         {list.map((item) => (

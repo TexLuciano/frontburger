@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
-  width: 100vw;
+export const Container = styled.div`
+  width: 100%;
   overflow: auto;
 `;
-
 
 export const ProductImg = styled.img`
   width: 80px;

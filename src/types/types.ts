@@ -1,3 +1,5 @@
+import {SetStateAction, Dispatch} from 'react'
+
 export interface DataType {
   data: {
     admin?: boolean;
@@ -52,7 +54,7 @@ export interface ProductType {
   name: string;
   offer: boolean;
   path: string;
-  price: number;
+  price: string;
   updatedAt: string;
   url: string;
   quantity: number;
@@ -62,7 +64,7 @@ interface Product {
   category: string;
   id: number;
   name: string;
-  price: number;
+  price: string;
   url: string;
   quantity: number;
   _id: string;
@@ -92,4 +94,18 @@ export interface OrderFormated{
 export  type SlipeProps ={
   hasArrows: boolean,
   hasDots: boolean,
+}
+
+export interface CreateCategoryType{
+    url:string,
+    id:number,
+    name:string,
+    path:string,
+    createdAt:string,
+    updatedAt:string
+}
+
+export interface PopupProps {
+  id: number;
+  setCategory: Dispatch<SetStateAction<[] | CreateCategoryType[]>>;
 }

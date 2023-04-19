@@ -33,7 +33,7 @@ export const CartItems = () => {
           <C.Body key={item.id}>
             <img src={item.url} alt="" />
             <C.Name>{item.name}</C.Name>
-            <C.Price>{formateCurrency(item.price)}</C.Price>
+            <C.Price>{formateCurrency(Number(item.price))}</C.Price>
             <C.Quantity>
               <button onClick={() => decreaseProducts(item.id)}>-</button>
               <p>{item.quantity}</p>
@@ -41,7 +41,7 @@ export const CartItems = () => {
               <C.ButtonTrash  onClick={() => deleteProducts(item.id)}><BsFillTrashFill/></C.ButtonTrash>
             </C.Quantity>
 
-            <C.Price>{formateCurrency(item.price * item.quantity)}</C.Price>
+            <C.Price>{formateCurrency(Number(item.price) * item.quantity)}</C.Price>
           </C.Body>
         ))
       ) : (

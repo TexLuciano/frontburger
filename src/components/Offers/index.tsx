@@ -93,7 +93,7 @@ export const Offer = ({screen}:{screen:number}) => {
             <C.Slider>
               <img src={i.url} />
               <p>{i.name}</p>
-              <p>{formateCurrency(i.price)}</p>
+              <p>{formateCurrency( Number(i.price))}</p>
               <C.Button onClick={()=> handleProduct(i)}>Peça agora</C.Button>
             </C.Slider>
           </C.SliderContainer>
