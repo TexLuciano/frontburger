@@ -15,7 +15,9 @@
 
    <img alt="Github stars" src="https://img.shields.io/github/stars/TexLuciano/frontburger?color=DC143C" /> 
 </p>
-
+<p align="center">
+<img width="450" height="300" src="src/imgs/to-readme/ezgif.com-video-to-gif.gif"/>
+</p>
 
 <p>Este é um projeto Full Stack de uma plataforma de pedidos de comida, onde os usuários podem se cadastrar, 
 escolher os produtos desejados e realizar pedidos. O administrador da plataforma pode verificar e gerenciar esses pedidos, 
