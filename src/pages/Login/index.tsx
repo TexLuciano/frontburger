@@ -1,5 +1,5 @@
 import * as C from './style';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiFillMail } from 'react-icons/ai';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import logo from '../../imgs/logow.svg';
@@ -10,17 +10,12 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { useUser } from '../../context/UserContext';
 import { DataType, InputsTypes } from '../../types/types';
-import {Input,Button} from '../../components/';
+import { Input, Button } from '../../components/';
 
 export const Login = () => {
-
-
   const { putUserData } = useUser();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-
-  
-  
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -41,10 +36,8 @@ export const Login = () => {
   });
 
   const onSubmit: SubmitHandler<InputsTypes> = async (data) => {
-    
-
     try {
-      const { data: res }: DataType    = await api.post(
+      const { data: res }: DataType = await api.post(
         'sessions',
         {
           email: data.email,
@@ -54,24 +47,20 @@ export const Login = () => {
           validateStatus: () => true,
         },
       );
-       
-   
-        
+
       putUserData(res);
 
-      if(res.admin){
-        navigate('/admin/pedidos')
-      }else if(!res.error ){
-        navigate('/')
+      if (res.admin) {
+        navigate('/admin/pedidos');
+      } else if (!res.error) {
+        navigate('/');
       }
-    
+
       if (res.name) {
         toast.success(`Bem vindo ${res.name}`);
       } else {
         throw new Error('no has user');
       }
-
-
     } catch (err) {
       console.log(err);
       toast.error(`Verifique seu e-mail e senha`);
@@ -87,6 +76,7 @@ export const Login = () => {
           <C.Icon error={errors.email?.message}>
             <AiFillMail />
             <Input
+              autoComplete='off'
               type="email"
               {...register('email')}
               placeholder="Digite seu e-mail"
@@ -102,10 +92,10 @@ export const Login = () => {
             />
             <p>{errors.password?.message}</p>
           </C.Icon>
-          <Button type='submit'>Sign In</Button>
+          <Button type="submit">Sign In</Button>
         </C.Form>
         <C.SignInLink>
-          Não possui conta? <Link to='/registro'>Sign Up</Link >
+          Não possui conta? <Link to="/registro">Sign Up</Link>
         </C.SignInLink>
       </C.ContainerForm>
     </C.Container>

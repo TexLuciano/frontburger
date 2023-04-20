@@ -85,7 +85,7 @@ export const NewProduct = () => {
       <C.ContainerItems noValidate onSubmit={handleSubmit(onSubmit)}>
         <C.Label>
           Nome
-          <C.Input type="text" {...register('name')} />
+          <C.Input type="text" autoComplete='off'{...register('name')} />
           <p>{errors.name?.message}</p>
         </C.Label>
         <C.Label>
@@ -120,7 +120,7 @@ export const NewProduct = () => {
           placeholder="Categorias"
           onChange={(e) => setChange(e)}
         />
-        {change === undefined ? 'Selecione uma categoria' : null}
+        {change === undefined ? <p>Selecione uma categoria</p> : null}
 
         <C.ContainerIput>
           <input

@@ -23,4 +23,8 @@ export const Title = styled.h2`
   text-transform: uppercase;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #9758a6;
+
+  @media (max-width: 700px) {
+    font-size: 2rem;
+  }
 `;

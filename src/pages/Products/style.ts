@@ -7,14 +7,12 @@ export const Container = styled.div`
   animation: scale 0.5s forwards;
 
   @keyframes scale {
-  to {
-    opacity: 1;
-    transform: translateX(0px);
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
   }
-}
 `;
-
-
 
 export const Nav = styled.nav`
   margin-top: 25px;
@@ -23,7 +21,7 @@ export const Nav = styled.nav`
 
   padding: 0 20px;
   @media (max-width: 600px) {
-    padding:0px;
+    padding: 0px;
   }
 `;
 export const Ul = styled.ul`
@@ -34,10 +32,10 @@ export const Ul = styled.ul`
 `;
 export const Li = styled.li`
   list-style: none;
-
 `;
 
 export const Button = styled.button<{ active: boolean }>`
+  background: #fff;
   font-size: 1.2rem;
   border: none;
   color: ${({ active }) => (active ? '#9758a6' : '#9A9A9D')};
@@ -46,7 +44,6 @@ export const Button = styled.button<{ active: boolean }>`
 `;
 
 export const ContainerProducts = styled.div`
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 20px;
@@ -57,7 +54,6 @@ export const ContainerProducts = styled.div`
   gap: 25px 0;
 
   @media (max-width: 1270px) {
-
     grid-template-columns: repeat(2, 1fr);
   }
 

@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <>
     <>
      <BrowserRouter>
-        <ToastContainer autoClose={2000} />
+        <ToastContainer autoClose={1000} />
         <GlobaStyles />
         <App />
      </BrowserRouter>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import * as C from './style';
-import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { MdOutlineLogout } from 'react-icons/md';
 import { useUser } from '../../context/UserContext';
 import { useCart } from '../../context/CartContext';
 
@@ -40,7 +40,7 @@ export const Header = () => {
               <BsFillPersonFill />
               <p>Olá, {userData?.name}</p>
             </div>
-            <button onClick={logout}>Sair</button>
+            <button onClick={logout}><MdOutlineLogout/></button>
           </div>
         </div>
       </C.ContainerItems>

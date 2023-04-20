@@ -35,3 +35,15 @@ export const ReactSelectStyle = styled(ReactSelect)`
   width: 250px;
   cursor: pointer;
 `;
+export const Button = styled.button`
+  cursor: pointer;
+  background: #9758a6;
+  border: 0;
+  padding: 5px;
+  border-radius: 3px;
+  margin-left: 15px;
+
+  &:hover{
+    background: #07BC0C;
+  }
+`;

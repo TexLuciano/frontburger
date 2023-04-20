@@ -10,7 +10,7 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { useUser } from '../../context/UserContext';
 import { Input, Button } from '../../components';
-import {  InputsTypes } from '../../types/types';
+import { InputsTypes } from '../../types/types';
 
 export const Register = () => {
   //const {state, setState}= useContext(UserContext)
@@ -74,6 +74,7 @@ export const Register = () => {
           <C.Icon error={errors.name?.message}>
             <AiOutlineUserAdd />
             <Input
+              autoComplete="off"
               type="text"
               {...register('name')}
               placeholder="Digite seu nome"
@@ -84,6 +85,7 @@ export const Register = () => {
           <C.Icon error={errors.email?.message}>
             <AiFillMail />
             <Input
+              autoComplete="off"
               type="email"
               {...register('email')}
               placeholder="Digite seu e-mail"

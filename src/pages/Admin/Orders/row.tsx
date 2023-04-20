@@ -15,31 +15,42 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import api from '../../../services/api';
 import Select from 'react-select';
 import { states } from './order-status';
+import { AiFillDelete } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 
 interface Props {
   row: OrderFormated;
   orders: OrdersType[];
   setOrders: React.Dispatch<React.SetStateAction<[] | OrdersType[]>>;
+  loadOrders: () => void;
 }
 
-const Row = ({ row, orders, setOrders }: Props) => {
+const Row = ({ row, orders, setOrders, loadOrders }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
   async function setNewStatus(id: string, status: string | undefined) {
-    console.log(id);
     setIsLoading(true);
     await api.put(`orders/${id}`, { status });
 
     const newOrders = orders.map((order) => {
       return order._id === id ? { ...order, status } : order;
-
-      
-      
     });
 
     setOrders(newOrders);
     setIsLoading(false);
+  }
+
+  async function deleteOrder(id: string) {
+    try {
+      await api.delete(`orders/${id}`);
+      toast.success('Pedido deletado')
+    } catch (error) {
+      console.log(error);
+      toast.error('Tente novamente mais tarde')
+    }
+
+    loadOrders();
   }
 
   return (
@@ -62,7 +73,7 @@ const Row = ({ row, orders, setOrders }: Props) => {
         <TableCell>
           <Select
             className="selectstyle"
-            options={states.filter(item => item.label !== 'Todos')}
+            options={states.filter((item) => item.label !== 'Todos')}
             menuPortalTarget={document.body}
             placeholder="Status"
             defaultValue={states.find(
@@ -73,6 +84,11 @@ const Row = ({ row, orders, setOrders }: Props) => {
             }}
             isLoading={isLoading}
           />
+        </TableCell>
+        <TableCell>
+          <C.Button onClick={() => deleteOrder(row.orderId)}>
+            <AiFillDelete />
+          </C.Button>
         </TableCell>
       </TableRow>
       <TableRow>

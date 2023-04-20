@@ -27,14 +27,16 @@ const Orders = () => {
   const [activeCategory, setActiveCategory] = useState<States>({id:1});
   const [activeStatus, setActiveStatus] = useState<number | undefined | null>(null);
 
-  useEffect(() => {
-    async function loadOrders() {
-      const { data }: { data: OrdersType[] } = await api.get('orders');
+  async function loadOrders() {
+    const { data }: { data: OrdersType[] } = await api.get('orders');
 
-      setOrders(data);
-    }
+    setOrders(data);
+  }
+
+  useEffect(() => {
     loadOrders();
   }, []);
+ 
 
   useEffect(() => {
     if (activeCategory.id === 1 ) {
@@ -90,11 +92,12 @@ const Orders = () => {
               <TableCell>Cliente</TableCell>
               <TableCell>Data do pedido</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {ordersFiltered && ordersFiltered.map((row: OrderFormated) => (
-              <Row key={row.orderId} row={row}  orders={orders} setOrders={setOrders}/>
+              <Row key={row.orderId} row={row}  orders={orders} setOrders={setOrders} loadOrders={loadOrders}/>
             ))}
           </TableBody>
         </Table>

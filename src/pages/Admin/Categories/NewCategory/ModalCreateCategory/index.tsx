@@ -5,17 +5,17 @@ import * as yup from 'yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IoMdCloudUpload } from 'react-icons/io';
-import { CreateCategoryType, InputsTypesProduct } from '../../../../../types/types';
+import {
+  CreateCategoryType,
+  InputsTypesProduct,
+} from '../../../../../types/types';
 import { toast } from 'react-toastify';
 
-
-
 export interface PopupProps {
- 
   setCategory: Dispatch<SetStateAction<[] | CreateCategoryType[]>>;
 }
 
-export const NewCategory = ({setCategory}: PopupProps) => {
+export const NewCategory = ({ setCategory }: PopupProps) => {
   const [fileName, setFileName] = useState<FileList | null>(null);
 
   const schema = yup.object().shape({
@@ -45,10 +45,7 @@ export const NewCategory = ({setCategory}: PopupProps) => {
     setCategory(data);
   }
 
-
   const onSubmit: SubmitHandler<InputsTypesProduct> = async (data) => {
-  
-
     const productDataFormData = new FormData();
 
     productDataFormData.append('name', data.name);
@@ -65,17 +62,15 @@ export const NewCategory = ({setCategory}: PopupProps) => {
     resetField('file');
 
     setFileName(null);
-    loadCategories()
+    loadCategories();
   };
 
   return (
     <C.Container>
-    
-
       <C.ContainerItems noValidate onSubmit={handleSubmit(onSubmit)}>
         <C.Label>
           Nome
-          <C.Input type="text" {...register('name')} />
+          <C.Input type="text" autoComplete="off" {...register('name')} />
           <p>{errors.name?.message}</p>
         </C.Label>
 

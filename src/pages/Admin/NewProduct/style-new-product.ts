@@ -16,6 +16,10 @@ export const ContainerItems = styled.form`
   background: #3c3c3c;
   padding: 20px;
   border-radius: 15px;
+
+  p{
+    color: red;
+  }
 `;
 
 export const Label = styled.label`
